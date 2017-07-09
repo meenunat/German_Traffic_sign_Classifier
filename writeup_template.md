@@ -118,6 +118,8 @@ German traffic signs that I found on the web:
 
 The images might be difficult to classify because of varied brightness in the image. 
 
+![](results/webimage.png?raw=true "Webimages")
+
 ![](results/webimage_result_1.png?raw=true "Wrong Prediction 1")
 
 ![](results/webimage_result_5.png?raw=true "Wrong Prediction 2")
