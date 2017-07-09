@@ -1,4 +1,4 @@
-#**Traffic Sign Recognition** 
+# **Traffic Sign Recognition** 
 
 The aim of the project is to build a model that can classify traffic signs with a validation accuracy equal to 0.93 or greater.
 ---
@@ -15,7 +15,7 @@ The goals / steps of this project are the following:
 
 Here is a link to my [project code](https://github.com/meenunat/German_traffic_Sign_classifier/blob/master/Traffic_Sign_classifier.ipynb)
 
-###Data Set Summary & Exploration
+## Data Set Summary & Exploration
 
 [German Traffic Sign Dataset](http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset) was used for training/ Validation/ Testing the model.
 
@@ -25,7 +25,7 @@ Here is a link to my [project code](https://github.com/meenunat/German_traffic_S
 * The shape of a traffic sign image is (32, 32, 3)
 * The number of unique classes/labels in the data set is 43
 
-####2. Include an exploratory visualization of the dataset.
+## Include an exploratory visualization of the dataset.
 
 From the data distribution, it is obvious that data set is highly skewed.  
 
@@ -36,15 +36,15 @@ Here is an exploratory visualization of the data set. It is a bar chart showing 
 ![](results/data_1.png?raw=true "Speed limit (30km/h)"
 ![](results/data_2.png?raw=true "Speed limit (50km/h)"
 
-###Design and Test a Model Architecture
+## Design and Test a Model Architecture
 
-The original LeNet Model was chosen initially with 3 fully connected  layers. The validation accuracy and training accuracy indicated the model was under-fitting with high training accuracy(0.987) and low validation accuracy(.81). To improve the accuracy, an additional fully connected layer was added to the LeNet Model. The Model has 2 convolution layers which is followed by pooling and a relu activation layer with 50% data dropout. The output of the model is processed via four fully connected layers after flattening.
+The original LeNet Model was chosen initially with 3 fully connected  layers. The validation accuracy and training accuracy indicated the model was over-fitting with high training accuracy(0.987) and low validation accuracy(.81). To improve the accuracy, an additional fully connected layer was added to the LeNet Model. The Model has 2 convolution layers which is followed by pooling and a relu activation layer with 50% data dropout. The output of the model is processed via four fully connected layers after flattening.
 
-####Preprocessing
+### Preprocessing
 
 The original RGB image was converted into different color space ['Gray','HSV', 'HLS', 'Lab', 'Luv', 'XYZ', 'Yrb', 'YUV'] before parsing it through the model. Conversion to gray scale and yuv space showed increased validation accuracy than other conversion techniques (0.888).
 
-####Original Lenet
+### Original Lenet
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -61,8 +61,9 @@ The original RGB image was converted into different color space ['Gray','HSV', '
 | Fully connected		| Input: 84 and Output:10   					|
 
 
-####Model build in the project:
-Due to under-fitting of data, an additional fully connected layer was added to the original LeNet Model. 
+### Model build in the project:
+Due to over-fitting of data, an additional fully connected layer was added to the original LeNet Model. 
+
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x3 RGB image   							| 
@@ -81,76 +82,48 @@ Due to under-fitting of data, an additional fully connected layer was added to t
 | Fully connected		| Input: 180 and Output:86   					|
 | Fully connected		| Input: 86 and Output:43   					|
 
-Normalization of the data showed an increase in the validation accuracy (0.931) and training accuracy(0.995) 
+Normalization of the data showed an increase in the validation accuracy (0.916) and training accuracy(0.996). But the model exposes an oscillation in the accuracy. 
 
-####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
-
-Also decreasing the learning rate coupled with increasing the epochs results in increase in the efficiency. 
-
-####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+In order to overcome the oscillation, learning rate was decreased by 10. But the accuracy decreased. To help this, model needs to be generalized for which dropout of 50% was added after second convolution layer and the number of epochs were also increased.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 0.999
+* validation set accuracy of 0.946
+* test set accuracy of 0.939
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
+
+* What was the first architecture that was tried and why was it chosen? 
+LeNet Architecture was chosen with 3 fully connected layers.
+
 * What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
-
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
+The model was overfitting the data with the initial architecture. 
  
+* How was the architecture adjusted and why was it adjusted? 
+In order to improve this, an additional layer was added to the original LeNet model with 50% dropout to improve generalization.  
 
-###Test a Model on New Images
+* Which parameters were tuned? How were they adjusted and why?
+Learning rate, number of epochs and batch size were tuned to get a robust model.
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+## Test a Model on New Images
+The model is designed to accept only images of size 32x32, While the web images were of bigger size. Scaling the images may tend to loose information leading to wrong prediction.
 
-Here are five German traffic signs that I found on the web:
+### Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+German traffic signs that I found on the web:
 
-The first image might be difficult to classify because ...
+![](results/webimage.png?raw=true "Webimages)"
 
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
+The images might be difficult to classify because of varied brightness in the image. 
+![](results/webimage_result_1.png?raw=true "Wrong Prediction)"
+![](results/webimage_result_5.png?raw=true "Wrong Prediction)"
 
-Here are the results of the prediction:
+Also, scaling the image may have caused crucial information to be lost.
+![](results/webimage_result_3.png?raw=true "Wrong Prediction)"
+![](results/webimage_result_4.png?raw=true "Wrong Prediction)"
 
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+The model was able to correctly guess 3 out of the 7 traffic signs, which gives an accuracy of 42.8%. This triggers an interesting discussion to augment data to have a balanced datasets which might potentially help in better prediction accuracy.
 
-
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
-
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
-
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
-
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
-
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
-
-
-For the second image ... 
-
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
-
-
+In real world, environment, the requirement is to have faster model with better prediction. The current model takes a longer time to process due to low learning rate which is not desirable. 
+## Additional Improvements:
+1.	Need to augment data to get a balanced dataset
+2.	The model needs to be modified to work on videos
