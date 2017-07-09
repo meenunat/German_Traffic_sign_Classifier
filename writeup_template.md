@@ -117,11 +117,13 @@ German traffic signs that I found on the web:
 ![](results/webimage.png?raw=true "Webimages")
 
 The images might be difficult to classify because of varied brightness in the image. 
+
 ![](results/webimage_result_1.png?raw=true "Wrong Prediction")
 
 ![](results/webimage_result_5.png?raw=true "Wrong Prediction")
 
 Also, scaling the image may have caused crucial information to be lost.
+
 ![](results/webimage_result_3.png?raw=true "Wrong Prediction")
 
 ![](results/webimage_result_4.png?raw=true "Wrong Prediction")
