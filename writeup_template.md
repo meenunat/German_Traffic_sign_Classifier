@@ -118,17 +118,15 @@ German traffic signs that I found on the web:
 
 The images might be difficult to classify because of varied brightness in the image. 
 
-![](results/webimage.png?raw=true "Webimages")
+![](results/webimage_result_1.PNG?raw=true "Wrong Prediction 1")
 
-![](results/webimage_result_1.png?raw=true "Wrong Prediction 1")
-
-![](results/webimage_result_5.png?raw=true "Wrong Prediction 2")
+![](results/webimage_result_5.PNG?raw=true "Wrong Prediction 2")
 
 Also, scaling the image may have caused crucial information to be lost.
 
-![](results/webimage_result_3.png?raw=true "Wrong Prediction 3")
+![](results/webimage_result_3.PNG?raw=true "Wrong Prediction 3")
 
-![](results/webimage_result_4.png?raw=true "Wrong Prediction 4")
+![](results/webimage_result_4.PNG?raw=true "Wrong Prediction 4")
 
 The model was able to correctly guess 3 out of the 7 traffic signs, which gives an accuracy of 42.8%. This triggers an interesting discussion to augment data to have a balanced datasets which might potentially help in better prediction accuracy.
 
