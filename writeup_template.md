@@ -32,8 +32,11 @@ From the data distribution, it is obvious that data set is highly skewed.
 Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
 
 ![](results/data_distribution.png?raw=true "German Traffic Signal Data Distribution")
+
 ![](results/data_0.png?raw=true "Speed limit (20km/h)")
+
 ![](results/data_1.png?raw=true "Speed limit (30km/h)")
+
 ![](results/data_2.png?raw=true "Speed limit (50km/h)")
 
 ## Design and Test a Model Architecture
@@ -111,19 +114,22 @@ The model is designed to accept only images of size 32x32, While the web images 
 
 German traffic signs that I found on the web:
 
-![](results/webimage.png?raw=true "Webimages"
+![](results/webimage.png?raw=true "Webimages")
 
 The images might be difficult to classify because of varied brightness in the image. 
 ![](results/webimage_result_1.png?raw=true "Wrong Prediction")
+
 ![](results/webimage_result_5.png?raw=true "Wrong Prediction")
 
 Also, scaling the image may have caused crucial information to be lost.
 ![](results/webimage_result_3.png?raw=true "Wrong Prediction")
+
 ![](results/webimage_result_4.png?raw=true "Wrong Prediction")
 
 The model was able to correctly guess 3 out of the 7 traffic signs, which gives an accuracy of 42.8%. This triggers an interesting discussion to augment data to have a balanced datasets which might potentially help in better prediction accuracy.
 
 In real world, environment, the requirement is to have faster model with better prediction. The current model takes a longer time to process due to low learning rate which is not desirable. 
+
 ## Additional Improvements:
 1.	Need to augment data to get a balanced dataset
 2.	The model needs to be modified to work on videos
